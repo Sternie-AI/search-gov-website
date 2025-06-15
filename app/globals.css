@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core Palette from Document */
+    --deja-vu-blue-hsl: 220 44% 41%; /* #3B5998 */
+    --orangeade-hsl: 12 67% 54%; /* #D85A3A */
+
+    /* Extended Blue Family */
+    --blue-900-hsl: 221 56% 28%; /* #1E3A6F */
+    --blue-700-hsl: 220 44% 41%; /* #3B5998 (Same as Deja Vu Blue) */
+    --blue-500-hsl: 223 51% 52%; /* #4A69BD */
+    --blue-300-hsl: 224 49% 66%; /* #7B94D4 */
+    --blue-100-hsl: 220 83% 95%; /* #E8F0FE */
+
+    /* Orange Accent Scale */
+    --orange-700-hsl: 12 67% 54%; /* #D85A3A (Same as Orangeade) */
+    --orange-500-hsl: 17 76% 61%; /* #E67E51 */
+    --orange-300-hsl: 17 83% 74%; /* #F4A582 */
+    --orange-100-hsl: 20 100% 97%; /* #FFF4F0 */
+
+    /* Neutral Foundation */
+    --gray-900-hsl: 222 22% 17%; /* #1F2937 */
+    --gray-700-hsl: 215 19% 27%; /* #374151 */
+    --gray-500-hsl: 215 14% 45%; /* #6B7280 */
+    --gray-300-hsl: 216 10% 83%; /* #D1D5DB */
+    --gray-100-hsl: 220 13% 96%; /* #F3F4F6 */
+    --white-hsl: 0 0% 100%; /* #FFFFFF */
+
+    /* Semantic Colors from Document */
+    --success-hsl: 158 94% 30%; /* #059669 */
+    --warning-hsl: 38 90% 50%; /* #F59E0B */
+    --error-hsl: 0 72% 51%; /* #DC2626 */
+    --info-hsl: 217 91% 60%; /* #3B82F6 */
+
+    /* Shadcn/ui Semantic Mapping (using document's definitions) */
+    --background: var(--white-hsl); /* Default background: White */
+    --foreground: var(--gray-900-hsl); /* Default text: Charcoal */
+
+    --card: var(--white-hsl); /* Card background */
+    --card-foreground: var(--gray-900-hsl); /* Card text */
+
+    --popover: var(--white-hsl);
+    --popover-foreground: var(--gray-900-hsl);
+
+    --primary: var(--blue-700-hsl); /* Déjà Vu Blue / Blue 700 */
+    --primary-foreground: var(--white-hsl); /* White text on primary */
+    /* --primary-hover: var(--blue-900-hsl); /* Optional: for hover states if not handled by components */
+
+    --secondary: var(--blue-100-hsl); /* Using Blue 100 for secondary backgrounds or elements */
+    --secondary-foreground: var(--blue-700-hsl); /* Text on secondary */
+
+    --accent: var(--orange-700-hsl); /* Orangeade / Orange 700 */
+    --accent-foreground: var(--white-hsl); /* White text on accent */
+    /* --accent-hover: var(--orange-500-hsl); /* Optional: for hover states */
+
+    --muted: var(--gray-100-hsl); /* Muted background: Cloud */
+    --muted-foreground: var(--gray-500-hsl); /* Muted text: Storm */
+
+    --destructive: var(--error-hsl); /* Error Red */
+    --destructive-foreground: var(--white-hsl);
+
+    --border: var(--gray-300-hsl); /* Silver */
+    --input: var(--gray-300-hsl); /* Input border: Silver */
+    --ring: var(--blue-500-hsl); /* Ring color: Accessible Blue for focus */
+
+    --radius: 0.5rem;
+
+    /* Direct color names for utility classes (matching Tailwind config) */
+    --deja-vu-blue: var(--deja-vu-blue-hsl);
+    --orangeade: var(--orangeade-hsl);
+
+    --blue-900: var(--blue-900-hsl);
+    --blue-700: var(--blue-700-hsl);
+    --blue-500: var(--blue-500-hsl);
+    --blue-300: var(--blue-300-hsl);
+    --blue-100: var(--blue-100-hsl);
+
+    --orange-700: var(--orange-700-hsl);
+    --orange-500: var(--orange-500-hsl);
+    --orange-300: var(--orange-300-hsl);
+    --orange-100: var(--orange-100-hsl);
+
+    --gray-900: var(--gray-900-hsl);
+    --gray-700: var(--gray-700-hsl);
+    --gray-500: var(--gray-500-hsl);
+    --gray-300: var(--gray-300-hsl);
+    --gray-100: var(--gray-100-hsl);
+
+    --success: var(--success-hsl);
+    --warning: var(--warning-hsl);
+    --error: var(--error-hsl);
+    --info: var(--info-hsl);
+  }
+
+  .dark {
+    /* Dark Mode: Define dark theme variables here if needed.
+       The document focuses on a light theme. For a dark theme,
+       you'd invert colors, e.g., background becomes a dark gray/blue.
+       Example:
+    --background: var(--gray-900-hsl);
+    --foreground: var(--gray-100-hsl);
+    --card: var(--gray-800-hsl); // A slightly lighter dark shade for cards
+    --card-foreground: var(--gray-100-hsl);
+    --popover: var(--gray-800-hsl);
+    --popover-foreground: var(--gray-100-hsl);
+    --primary: var(--blue-500-hsl); // Lighter blue for dark mode primary
+    --primary-foreground: var(--white-hsl);
+    --secondary: var(--gray-700-hsl);
+    --secondary-foreground: var(--gray-100-hsl);
+    --accent: var(--orange-500-hsl); // Slightly adjusted orange for dark mode
+    --accent-foreground: var(--gray-900-hsl); // Dark text on orange for contrast
+    --muted: var(--gray-700-hsl);
+    --muted-foreground: var(--gray-400-hsl); // A lighter gray for muted text
+    --destructive: var(--orange-500-hsl); // Using orange for destructive in dark mode can work
+    --destructive-foreground: var(--white-hsl);
+    --border: var(--gray-700-hsl);
+    --input: var(--gray-700-hsl);
+    --ring: var(--blue-300-hsl); // Lighter ring for dark mode
+    */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* === START: Modal Scrolling Architecture Fix === */
+
+/* Ensure dialog content is the scroll container */
+[role="dialog"] > div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Stable scrollbar gutter prevents layout shift */
+.overflow-y-auto {
+  scrollbar-gutter: stable;
+}
+
+/* Ensure smooth scrolling on mobile */
+@media (max-width: 768px) {
+  .overflow-y-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Optional: Custom scrollbar styling for better visibility */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 8px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+/* === END: Modal Scrolling Architecture Fix === */
