@@ -75,6 +75,9 @@ module.exports = {
         "gray-500": "hsl(var(--gray-500))",
         "gray-300": "hsl(var(--gray-300))",
         "gray-100": "hsl(var(--gray-100))",
+        
+        // Government colors
+        "old-glory-blue": "#002868",
       },
       borderRadius: {
         lg: "var(--radius)",

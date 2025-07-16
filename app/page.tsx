@@ -9,9 +9,7 @@ import {
   Settings2,
   Users,
   CheckCircle,
-  Play,
   MessageSquare,
-  Search,
   BarChartHorizontalBig,
   Building,
   Users2,
@@ -36,7 +34,6 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog"
 import { EnhancedContactForm } from "@/components/contact-form"
-import { Input } from "@/components/ui/input"
 
 export default function Home() {
   const [isContactDialogOpen, setIsContactDialogOpen] = useState(false)
@@ -65,16 +62,14 @@ export default function Home() {
       >
         <div className="flex min-h-screen flex-col">
           <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container flex h-16 items-center justify-between">
-              <Link href="/" className="flex items-center">
-                <Image src="/images/searchgov-logo.png" alt="SearchGov.ai Logo" width={200} height={40} />
-              </Link>
+                          <div className="container flex h-16 items-center justify-between">
+                <Link href="/" className="flex items-center space-x-3">
+                  <Image src="/images/searchgov-logo.png" alt="SearchGov.ai Logo" width={38} height={38} />
+                  <span className="text-xl font-bold text-old-glory-blue tracking-tight">SearchGov AI</span>
+                </Link>
               <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
                 <Link href="#use-cases" className="transition-colors hover:text-primary">
                   Use Cases
-                </Link>
-                <Link href="#demo" className="transition-colors hover:text-primary">
-                  Demo
                 </Link>
                 <Link href="#trust" className="transition-colors hover:text-primary">
                   Trust
@@ -95,7 +90,16 @@ export default function Home() {
                     Contact
                   </button>
                 </DialogTrigger>
-                <Button>Schedule Demo</Button>
+                <DialogTrigger asChild>
+                  <Button
+                    onClick={() => {
+                      setFormSubmittedData(null)
+                      setIsContactDialogOpen(true)
+                    }}
+                  >
+                    Schedule Demo
+                  </Button>
+                </DialogTrigger>
               </div>
             </div>
           </header>
@@ -117,13 +121,22 @@ export default function Home() {
                       </h1>
                       <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
                         Focus on understanding citizen queries and providing instant, contextual information.
-                        SearchGov.ai helps you deliver accurate answers and enhance user satisfaction.
+                        SearchGov AI helps you deliver accurate answers and enhance user satisfaction.
                       </p>
                     </div>
                     <div className="flex flex-wrap gap-4">
-                      <Button size="lg" className="gap-2">
-                        Schedule Demo <ArrowRight className="h-4 w-4" />
-                      </Button>
+                      <DialogTrigger asChild>
+                        <Button 
+                          size="lg" 
+                          className="gap-2"
+                          onClick={() => {
+                            setFormSubmittedData(null)
+                            setIsContactDialogOpen(true)
+                          }}
+                        >
+                          Schedule Demo <ArrowRight className="h-4 w-4" />
+                        </Button>
+                      </DialogTrigger>
                     </div>
                     <div id="benefits" className="grid grid-cols-2 sm:grid-cols-2 gap-6 pt-8">
                       <div className="space-y-2">
@@ -162,15 +175,26 @@ export default function Home() {
                       <div className="space-y-4">
                         <div className="flex items-center justify-between">
                           <div className="space-y-1">
-                            <h3 className="font-semibold">SearchGov.ai Preview</h3>
+                            <h3 className="font-semibold">SearchGov AI Preview</h3>
                             <p className="text-sm text-muted-foreground">AI-powered search in action</p>
                           </div>
                           <Button variant="outline" size="sm" asChild>
-                            <Link href="#demo">See It In Action</Link>
+                            <Link href="#use-cases">Learn More</Link>
                           </Button>
                         </div>
-                        <div className="aspect-[4/3] rounded-lg bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 flex items-center justify-center">
-                          <MessageSquare className="h-24 w-24 text-primary/40" />
+                        <div className="aspect-[4/3] rounded-lg overflow-hidden">
+                          <video 
+                            className="w-full h-full object-cover rounded-lg"
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            preload="metadata"
+                          >
+                            <source src="/demo.mov" type="video/quicktime" />
+                            <source src="/demo.mov" type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
                         </div>
                         <p className="text-xs text-muted-foreground text-center">
                           Imagine citizens asking: "How do I apply for a building permit?" and getting instant, accurate
@@ -182,59 +206,6 @@ export default function Home() {
                 </div>
               </div>
             </section>
-            {/* ... other sections ... */}
-            <section id="demo" className="py-24 bg-muted/20">
-              <div className="container space-y-12">
-                <div className="text-center space-y-4">
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Interactive Demo</h2>
-                  <p className="text-xl text-muted-foreground max-w-[42rem] mx-auto">
-                    Experience SearchGov.ai firsthand. Try example queries and see how our AI understands natural
-                    language and provides relevant information with source citations.
-                  </p>
-                </div>
-                <Card className="max-w-4xl mx-auto shadow-lg">
-                  <CardContent className="p-6 md:p-8">
-                    <div className="mb-6">
-                      <p className="text-sm text-muted-foreground mb-2">
-                        Click an example query or type your own (simulated):
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {[
-                          "When is the next city council meeting?",
-                          "How do I apply for a building permit?",
-                          "Property tax rates?",
-                          "Recycling services information?",
-                        ].map((query) => (
-                          <Button key={query} variant="outline" size="sm" className="text-xs sm:text-sm">
-                            {query}
-                          </Button>
-                        ))}
-                      </div>
-                      <div className="relative">
-                        <Input
-                          type="search"
-                          placeholder="e.g., How do I renew my driver's license?"
-                          className="pr-10"
-                        />
-                        <Search className="absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                      </div>
-                    </div>
-                    <div className="aspect-video rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center border">
-                      <p className="text-muted-foreground">
-                        [Live demo widget placeholder: Shows search results, natural language understanding, source
-                        citations, related questions, and response time.]
-                      </p>
-                    </div>
-                  </CardContent>
-                </Card>
-                <div className="text-center">
-                  <Button size="lg" className="gap-2">
-                    <Play className="w-4 h-4" /> See Full Capabilities
-                  </Button>
-                </div>
-              </div>
-            </section>
-
             <section id="use-cases" className="bg-background py-24">
               <div className="container space-y-12">
                 <h2 className="text-3xl font-bold tracking-tighter text-center sm:text-4xl md:text-5xl">
@@ -305,7 +276,7 @@ export default function Home() {
                       <ShieldAlert className="h-10 w-10 text-primary mb-2" />
                       <h3 className="text-lg font-semibold">Privacy</h3>
                       <p className="text-sm text-muted-foreground">
-                        No personal data collection, anonymous processing, and GDPR/CCPA compliance.
+                        No personal data collection, anonymous processing, and strict privacy policies.
                       </p>
                     </CardContent>
                   </Card>
@@ -314,8 +285,7 @@ export default function Home() {
                       <CheckCircle className="h-10 w-10 text-primary mb-2" />
                       <h3 className="text-lg font-semibold">Compliance</h3>
                       <p className="text-sm text-muted-foreground">
-                        Meets government standards (Section 508, WCAG 2.1), with certifications like FedRAMP, SOC 2, ISO
-                        27001.
+                        Meets Section 508 standards and accessibility compliance guidelines.
                       </p>
                     </CardContent>
                   </Card>
@@ -339,7 +309,7 @@ export default function Home() {
                   Seamless Implementation Process
                 </h2>
                 <p className="text-xl text-muted-foreground max-w-[42rem] mx-auto text-center">
-                  Getting started with SearchGov.ai is straightforward and designed for minimal disruption.
+                  Getting started with SearchGov AI is straightforward and designed for minimal disruption.
                 </p>
                 <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-3">
                   <div className="flex flex-col items-center text-center p-6">
@@ -348,7 +318,7 @@ export default function Home() {
                     </div>
                     <h3 className="text-xl font-bold mb-2">1. Simple Setup</h3>
                     <p className="text-sm text-muted-foreground">
-                      One-line code integration. No infrastructure changes required. Automatic indexing of your content.
+                      No infrastructure changes required. Automatic indexing of your content.
                     </p>
                   </div>
                   <div className="flex flex-col items-center text-center p-6">
@@ -379,7 +349,7 @@ export default function Home() {
             <div className="container flex flex-col items-center justify-between space-y-4 py-6 md:flex-row">
               <div className="flex items-center space-x-4">
                 <Link href="/" className="flex items-center font-bold">
-                  <Image src="/images/searchgov-logo.png" alt="SearchGov.ai Logo" width={200} height={40} />
+                  <Image src="/images/searchgov-logo.png" alt="SearchGov.ai Logo" width={50} height={50} />
                 </Link>
               </div>
               <p className="text-sm text-muted-foreground">© 2025 SearchGov.ai. All rights reserved.</p>
@@ -392,10 +362,7 @@ export default function Home() {
             <DialogHeader className="text-center">
               <DialogTitle className="text-2xl">
                 Let's Transform Your Agency's Search Experience
-                <span className="ml-2 inline-flex items-center rounded-full bg-blue-100 px-2 py-0.5 text-xs font-medium text-blue-800">
-                  <Lock className="mr-1 h-3 w-3" />
-                  FedRAMP Authorized
-                </span>
+                
               </DialogTitle>
               <DialogDescription>Connect with our government solutions team in under 60 seconds.</DialogDescription>
             </DialogHeader>
